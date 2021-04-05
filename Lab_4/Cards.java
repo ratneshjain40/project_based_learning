@@ -178,6 +178,7 @@ public class Cards {
                 switch (ch) {
                 case 1: {
                     pack.create_deck();
+                    System.out.println("Deck of 52 Cards Created!");
                     break;
                 }
 
