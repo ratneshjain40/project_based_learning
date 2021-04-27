@@ -1,5 +1,3 @@
-package Lab_1;
-
 import java.util.*;
 import java.io.*;
 
