@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
 public class SecondProgram {
     public static void main(String[] args) {
         Calculator calc = new Calculator();

@@ -1,3 +1,5 @@
+package Lab_5;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -152,7 +154,7 @@ class Square extends Rectangle {
     }
 }
 
-public class Program_1 {
+public class Inheritance_1 {
     public static void main(String[] args) {
         Circle circle = null;
         Rectangle rectangle = null;
