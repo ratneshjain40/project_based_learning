@@ -34,16 +34,11 @@ abstract class Shapes {
     }
 
     @Override
-    public String toString() {
-        String area = "Area is : " + getArea() + "\n";
-        String peremeter = "Peremeter is : " + getPeremeter();
-        String str = area.concat(peremeter);
-        return str;
-    }
+    public abstract String toString();
 
-    abstract double getArea();
+    public abstract double getArea();
 
-    abstract double getPeremeter();
+    public abstract double getPerimeter();
 }
 
 class Circle extends Shapes {
@@ -67,14 +62,22 @@ class Circle extends Shapes {
         this.radius = radius;
     }
 
-    double getArea() {
-        // TODO Auto-generated method stub
-        return 0;
+    @Override
+    public double getArea() {
+        double area = 3.14 * Math.pow(radius, 2);
+        return area;
     }
 
-    double getPeremeter() {
-        // TODO Auto-generated method stub
-        return 0;
+    @Override
+    public double getPerimeter() {
+        double perimeter = 2 * 3.14 * radius;
+        return perimeter;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Area: " + getArea() + "\nPerimeter: " + getPerimeter() + "\nColor: " + getColor()
+                + "\nFilled: " + getFilled());
     }
 }
 
@@ -111,14 +114,20 @@ class Rectangle extends Shapes {
         return length;
     }
 
-    double getArea() {
-        // TODO Auto-generated method stub
-        return 0;
+    public double getArea() {
+        double area = length * width;
+        return area;
     }
 
-    double getPeremeter() {
-        // TODO Auto-generated method stub
-        return 0;
+    public double getPerimeter() {
+        double perimeter = 2 * (length + width);
+        return perimeter;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Area: " + getArea() + "\nPerimeter: " + getPerimeter() + "\nColor: " + getColor()
+                + "\nFilled: " + getFilled());
     }
 }
 
@@ -172,6 +181,7 @@ public class Inheritance_1 {
                 int ch = Integer.parseInt(input.readLine());
                 switch (ch) {
                 case 1: {
+                    System.out.println("\nShape : ");
                     System.out.println("1. Circle");
                     System.out.println("2. Rectange");
                     System.out.println("3. Square");
@@ -181,24 +191,39 @@ public class Inheritance_1 {
 
                     if (sh.equals("1")) {
                         System.out.print("Enter Radius : ");
-                        double rad = Integer.parseInt(input.readLine());
+                        double radius = Integer.parseInt(input.readLine());
+                        System.out.print("Enter color : ");
+                        String color = input.readLine();
+                        System.out.print("Is it filled? True / False : ");
+                        boolean filled = Boolean.parseBoolean(input.readLine());
 
-                        Circle cir = new Circle(rad);
+                        Circle cir = new Circle(radius, color, filled);
                         circle = cir;
+
                     } else if (sh.equals("2")) {
                         System.out.print("Enter Length : ");
                         double length = Integer.parseInt(input.readLine());
                         System.out.print("Enter Width : ");
                         double width = Integer.parseInt(input.readLine());
+                        System.out.print("Enter color : ");
+                        String color = input.readLine();
+                        System.out.print("Is it filled? True / False : ");
+                        boolean filled = Boolean.parseBoolean(input.readLine());
 
-                        Rectangle rect = new Rectangle(length, width);
+                        Rectangle rect = new Rectangle(length, width, color, filled);
                         rectangle = rect;
+
                     } else if (sh.equals("3")) {
                         System.out.print("Enter Side : ");
                         double length = Integer.parseInt(input.readLine());
+                        System.out.print("Enter color : ");
+                        String color = input.readLine();
+                        System.out.print("Is it filled? True / False : ");
+                        boolean filled = Boolean.parseBoolean(input.readLine());
 
-                        Square squ = new Square(length);
+                        Square squ = new Square(length, color, filled);
                         square = squ;
+
                     } else {
                         System.out.println("Not an Option !");
                     }
@@ -206,26 +231,28 @@ public class Inheritance_1 {
                     break;
                 }
                 case 2: {
+                    int counter = 0;
                     if (circle != null) {
-                        System.out.println("Shape : Circle");
-                        System.out.println("Color : " + circle.getColor());
-                        System.out.println("Filled : " + circle.getFilled());
-                        System.out.println("Area : " + circle.getArea());
-                        System.out.println("Peremeter: " + circle.getPeremeter());
+                        System.out.println("\nShape : Circle");
+                        System.out.println("Color : " + circle.toString());
+                    } else {
+                        counter = counter + 1;
                     }
                     if (rectangle != null) {
-                        System.out.println("Shape : Rectangle");
-                        System.out.println("Color : " + rectangle.getColor());
-                        System.out.println("Filled : " + rectangle.getFilled());
-                        System.out.println("Area : " + rectangle.getArea());
-                        System.out.println("Peremeter: " + rectangle.getPeremeter());
+                        System.out.println("\nShape : Rectangle");
+                        System.out.println("Color : " + rectangle.toString());
+                    } else {
+                        counter = counter + 1;
                     }
                     if (square != null) {
-                        System.out.println("Shape : Square");
-                        System.out.println("Color : " + square.getColor());
-                        System.out.println("Filled : " + square.getFilled());
-                        System.out.println("Area : " + square.getArea());
-                        System.out.println("Peremeter: " + square.getPeremeter());
+                        System.out.println("\nShape : Square");
+                        System.out.println("Color : " + square.toString());
+                    } else {
+                        counter = counter + 1;
+                    }
+
+                    if (counter == 3) {
+                        System.out.println("Any Shape not created");
                     }
                     break;
                 }

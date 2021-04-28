@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 interface Exam {
-    public void precent_cal();
+    public void percentage_cal();
 }
 
 class Student {
@@ -66,35 +66,27 @@ class Result extends Student implements Exam {
         super(st);
     }
 
-    public void precent_cal() {
+    public void percentage_cal() {
         int total = 0;
         for (int i : this.marks) {
             total += i;
         }
-        this.percentage = (total / 300) * 100;
+        this.percentage = ((double)total / 300) * 100;
+        System.out.println("Percange of marks : " + String.format("%.2f",this.percentage));
     }
 }
 
 public class Interface_1 {
     public static void main(String[] args) {
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        boolean loop = true;
         try {
-            while (loop) {
-                System.out.println("\nMenu");
-                System.out.println("1. Add Student");
-                System.out.println("2. Display Students");
-                System.out.println("3. Get Marks percentage");
-                System.out.println("5. Remove Students");
-
-                System.out.print("Enter Choice : ");
-                int ch = Integer.parseInt(input.readLine());
-                switch (ch) {
-                case 1: {
-                    break;
-                }
-                }
-            }
+            Student st = new Student();
+            System.out.println("Student Created !");
+            st.show();
+            
+            System.out.println("---------- Result ----------");
+            Result rs = new Result(st);
+            rs.percentage_cal();
+            
         } catch (Exception e) {
 
         }
