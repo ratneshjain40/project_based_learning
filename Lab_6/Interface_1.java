@@ -2,6 +2,7 @@ package Lab_6;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 interface Exam {
     public void percentage_cal();
@@ -71,24 +72,46 @@ class Result extends Student implements Exam {
         for (int i : this.marks) {
             total += i;
         }
-        this.percentage = ((double)total / 300) * 100;
-        System.out.println("Percange of marks : " + String.format("%.2f",this.percentage));
+        this.percentage = ((double) total / 300) * 100;
+        System.out.println("Percange of marks : " + String.format("%.2f", this.percentage));
     }
 }
 
 public class Interface_1 {
     public static void main(String[] args) {
+        ArrayList<Student> st_list = new ArrayList<Student>();
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        boolean loop = true;
         try {
-            Student st = new Student();
-            System.out.println("Student Created !");
-            st.show();
-            
-            System.out.println("---------- Result ----------");
-            Result rs = new Result(st);
-            rs.percentage_cal();
-            
-        } catch (Exception e) {
+            while (loop) {
+                System.out.println("\nMenu");
+                System.out.println("1. Create student");
+                System.out.println("2. Get result");
 
+                System.out.print("Enter Choice : ");
+                int ch = Integer.parseInt(input.readLine());
+                switch (ch) {
+                case 1: {
+                    Student st = new Student();
+                    System.out.println("Student Created !");
+                    st_list.add(st);
+                    break;
+                }
+                case 2: {
+                    System.out.println("---------- Result ----------\n");
+                    int counter = 0;
+                    for (Student student : st_list) {
+                        System.out.println("\nStudent " + (++counter) + "\nResult : ");
+                        student.show();
+                        Result rs = new Result(student);
+                        rs.percentage_cal();
+                    }
+                    break;
+                }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input");
         }
     }
 }
